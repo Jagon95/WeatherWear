@@ -1,0 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IconsTable"
+    android:id="@+id/main_layout">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_area"
+        android:padding="10dp"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/search_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textSize="25sp"
+            android:textColor="@color/input_text"
+            android:textStyle="bold"
+            android:hint="@string/search_text_icons_table"
+            android:singleLine="true"
+            android:maxLength="10"/>
+
+        <Button
+            android:id="@+id/calc_clear_txt_Prise"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right|center_vertical"
+            android:background="@drawable/ic_highlight_remove"
+            android:onClick="onClickCloseSearch"/>
+
+    </FrameLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:fillViewport="false"
+        android:layout_below="@id/search_area">
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:id="@+id/grid_layout_icons_table"
+            android:layout_gravity="center_horizontal|top"
+            android:paddingBottom="150dp">
+
+        </GridLayout>
+    </ScrollView>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentLeft="false"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_search"
+        android:contentDescription="@string/description_button_go_bask"
+        android:layout_below="@id/search_area"
+        android:clickable="true"
+        android:layout_alignParentTop="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/search_button"
+        android:background="@drawable/search_button"
+        android:onClick="onClickSearch"
+        android:visibility="gone"/>
+
+
+    <!--<ImageButton-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_margin="20dp"-->
+        <!--android:background="@drawable/circle_button_red"-->
+        <!--android:src="@android:drawable/ic_menu_revert"-->
+        <!--android:contentDescription="@string/description_button_go_bask"-->
+        <!--android:clickable="true"/>-->
+    <!--<ImageButton-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_margin="20dp"-->
+        <!--android:background="@drawable/circle_button_green"-->
+        <!--android:src="@android:drawable/ic_menu_send"-->
+        <!--android:contentDescription="@string/description_button_go_bask"-->
+        <!--android:clickable="true" />-->
+
+</RelativeLayout>

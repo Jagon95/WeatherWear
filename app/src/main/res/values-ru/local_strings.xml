@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lang">ru</string>
+    <string name="button_add_item_activity_main">Новый элемент</string>
+
+
+
+	<string name="cityChoose">Выбран город </string>
+	<string name="title_activity_city_search_complete">Подтвердите ввод</string>
+
+
+	<string name="action_settings">Настройки</string>
+	<string name="description_button_go_bask">Назад</string>
+	<string name="search_text_icons_table">Введите текст</string>
+	<string name="text_view_default_color_name_activity_choose_color">Выберите цвет</string>
+	<string name="text_view_saturation_bar_activity_choose_button">Насыщенность</string>
+	<string name="text_view_value_bar_activity_choose_button">Яркость</string>
+	<string name="title_activity_choose_color">Выберите цвет</string>
+	<string name="title_activity_icon_table">Выберите иконку</string>
+	<string name="title_activity_city_list">Список городов</string>
+	<string name="title_activity_wear_list">Список вещей</string>
+
+	<!-- Эту штуку, вероятно, удобнее хранить в массиве -->
+	<string name="layer_underwear">нижний</string>
+	<string name="layer_base">базовый</string>
+	<string name="layer_top">верхний</string>
+	<string name="layer_outerwear">внешний</string>
+
+	<string name="level_lower">нижний</string>
+	<string name="level_upper">верхний</string>
+	<string name="layer">слой</string>
+	<string name="level">уровень</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lang">def</string>
+    <string name="button_add_item_activity_main">Add new item</string>
+    <string name="search_text_icons_table">Input text</string>
+    <string name="title_activity_icon_table">Choose wear icon</string>
+    <string name="title_activity_choose_color">Choose wear color</string>
+    <string name="title_activity_main">@string/app_name</string>
+    <string name="action_settings">Settings</string>
+    <string name="description_button_go_bask">Go back</string>
+    <string name="text_view_default_color_name_activity_choose_color">Choose color</string>
+    <string name="text_view_saturation_bar_activity_choose_button">Saturation</string>
+	<string name="title_activity_wear_list">Wear list</string>
+
+	<!-- Эту штуку, вероятно, удобнее хранить в массиве -->
+	<string name="layer_underwear">underwear</string>
+	<string name="layer_base">base</string>
+	<string name="layer_top">top</string>
+	<string name="layer_outerwear">outerwear</string>
+
+	<string name="level_lower">lower</string>
+	<string name="level_upper">upper</string>
+	<string name="layer">layer</string>
+	<string name="level">level</string>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/icon_button_pressed" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/icon_button" />
+            <size android:height="70dp"
+                android:width="70dp" />
+            <corners android:radius="5dp" />
+           <stroke android:width="1dip"
+               android:color="@color/icon_button_stroke_color" />
+        </shape>
+    </item>
+</selector>

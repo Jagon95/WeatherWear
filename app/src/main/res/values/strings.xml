@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">WeatherWear</string>
+    <string name="text_view_value_bar_activity_choose_button">Value</string>
+    <string name="title_activity_wear_edit">WearEditActivity</string>
+	<string name="title_activity_city_list">City list</string>
+
+</resources>

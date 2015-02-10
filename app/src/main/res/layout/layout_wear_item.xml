@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="5dp">
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:layout_marginRight="10dp"
+		android:layout_gravity="center_vertical">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:text="Large Text"
+			android:id="@+id/name_item"
+			android:layout_centerHorizontal="true"
+			android:layout_alignParentBottom="false"
+			android:layout_alignParentTop="true"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:text="@string/layer"
+			android:id="@+id/layer"
+			android:layout_below="@+id/name_item"
+			android:layout_alignParentStart="true"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:text="@string/level"
+			android:id="@+id/level"
+			android:layout_below="@id/layer"
+			android:layout_alignParentStart="true"
+			android:layout_centerHorizontal="true"/>
+
+	</RelativeLayout>
+
+	<Button
+		android:id="@+id/wear_icon"
+		style="@style/icon_button"
+		android:background="@drawable/icon_button"
+		android:layout_gravity="center_vertical"
+		android:clickable="false"/>
+</LinearLayout>

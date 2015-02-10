@@ -1,0 +1,126 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.yobaprojects.weatherwear.wear_adder.WearEditActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical"
+            android:gravity="bottom">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/wear_name"
+                android:textSize="18sp"
+                android:maxLength="25"
+                android:singleLine="true"
+                android:hint="sadasd"
+                android:background="@drawable/edit_text_field" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/button2"
+                    android:background="#0000"
+                    android:src="@drawable/ic_nfc_black"
+                    android:scaleType="fitXY"
+                    android:padding="0dp"
+                    android:onClick="onClickAddNFC"/>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/horizontalScrollView">
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent">
+
+                        <Button
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:text="New Button"
+                            android:id="@+id/button2" />
+                        <Button
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:text="New Button"
+                            android:id="@+id/button2"
+                            android:longClickable="true"/>
+                        <Button
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:text="New Button"
+                            android:id="@+id/button2"
+                            android:longClickable="true"/>
+                        <Button
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:text="New Button"
+                            android:id="@+id/button2"
+                            android:longClickable="true"/>
+                        <Button
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:text="New Button"
+                            android:id="@+id/button2"
+                            android:longClickable="true"/>
+                        <Button
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:text="New Button"
+                            android:id="@+id/button2"
+                            android:longClickable="true"/>
+                        <Button
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:text="New Button"
+                            android:id="@+id/button2"
+                            android:longClickable="true"/>
+
+                        </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/wear_icon"
+            style="@style/icon_button"
+            android:background="@drawable/icon_button"
+            android:onClick="onClickChangeIcon"
+            android:textSize="75sp"
+            android:layout_width="90dp"
+            android:layout_height="90dp" />
+
+        </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button3"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onClickEndUpWearGenerate"/>
+
+</LinearLayout>

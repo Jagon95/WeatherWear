@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yobaprojects.weatherwear" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".wear_adder.ChooseIconActivity"
+            android:label="@string/title_activity_icon_table" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".wear_adder.WearEditActivity" />
+        </activity>
+        <activity
+            android:name=".wear_adder.ChooseColorActivity"
+            android:label="@string/title_activity_choose_color" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".wear_adder.WearEditActivity" />
+        </activity>
+        <activity
+            android:name=".wear_adder.WearEditActivity"
+            android:label="@string/title_activity_wear_edit"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.yobaprojects.weatherwear.MainActivity" />
+        </activity>
+        <activity
+            android:name=".wear_list.WearListActivity"
+            android:label="@string/title_activity_wear_list" >
+        </activity>
+
+	    <activity
+		    android:name=".city_settings.CityListActivity"
+		    android:label="@string/title_activity_city_list"
+		    android:parentActivityName=".MainActivity" >
+		    <meta-data
+			    android:name="android.support.PARENT_ACTIVITY"
+			    android:value="com.yobaprojects.weatherwear.MainActivity" />
+	    </activity>
+	    <activity
+		    android:name=".city_settings.ShowWeatherActivity"
+		    android:label="@string/title_activity_city_search_complete"
+		    android:parentActivityName=".MainActivity" >
+		    <meta-data
+			    android:name="android.support.PARENT_ACTIVITY"
+			    android:value=".city_settings.CityListActivity" />
+	    </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,62 @@
+[
+	{
+		"icon" : 84,
+		"name" : "t-shirt",
+		"layer" : "base",
+		"level" : "upper",
+	},
+	{
+		"icon" : 70,
+		"name" : "jeans",
+		"layer" : "top",
+		"level" : "lower",
+	},
+	{
+		"icon" : 71,
+		"name" : "jacket",
+		"layer" : "top",
+		"level" : "upper",
+	},
+	{
+		"icon" : 108,
+		"name" : "pants",
+		"layer" : "top",
+		"level" : "lower",
+	},
+	{
+		"icon" : 86,
+		"name" : "vest",
+		"layer" : "outerwear",
+		"level" : "upper",
+	},
+	{
+		"icon" : 67,
+		"name" : "coat",
+		"layer" : "outerwear",
+		"level" : "upper",
+	},
+	{
+		"icon" : 83,
+		"name" : "sweater",
+		"layer" : "top",
+		"level" : "upper",
+	},
+	{
+		"icon" : 72,
+		"name" : "hoodie",
+		"layer" : "top",
+		"level" : "upper",
+	},
+	{
+		"icon" : 87,
+		"name" : "shirt",
+		"layer" : "base",
+		"level" : "upper",
+	},
+	{
+		"icon" : 65,
+		"name" : "shorts",
+		"layer" : "base",
+		"level" : "lower",
+	},
+]
