@@ -8,19 +8,64 @@
     android:orientation="vertical"
     android:gravity="center_horizontal">
 
-    <Button
-	    android:text="@string/button_add_item_activity_main"
-        android:id="@+id/addNewItem"
-        style="@style/screenWidthButton"/>
+	<ImageView
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:id="@+id/imageView"
+		android:src="@drawable/logo"
+		android:layout_weight="1"
+		android:layout_margin="10dp"/>
 
-    <Button
-	    style="@style/screenWidthButton"
-        android:text="@string/title_activity_wear_list"
-        android:id="@+id/goToWearListActivity"/>
+	<LinearLayout
+		android:id="@+id/addNewItem"
+		style="@style/button">
 
-	<Button
-		style="@style/screenWidthButton"
-		android:text="@string/title_activity_city_list"
-		android:id="@+id/goToCityListActivity"/>
+		<ImageView
+			android:src="@drawable/ic_playlist_add_black"
+			style="@style/button_icon"/>
+
+		<TextView
+			android:text="@string/button_add_item_activity_main"
+			style="@style/button_text"/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/goToWearListActivity"
+		style="@style/button">
+
+		<ImageView
+			android:src="@drawable/ic_view_list_black"
+			style="@style/button_icon"/>
+
+		<TextView
+			android:text="@string/title_activity_wear_list"
+			style="@style/button_text"/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/goToCityListActivity"
+		style="@style/button">
+
+		<ImageView
+			android:src="@drawable/ic_location_city_black"
+			style="@style/button_icon"/>
+
+		<TextView
+			android:text="@string/title_activity_city_list"
+			style="@style/button_text"/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/goToStatusActivity"
+		style="@style/button">
+
+		<ImageView
+			android:src="@drawable/ic_info_black"
+			style="@style/button_icon"/>
+
+		<TextView
+			android:text="@string/title_activity_status"
+			style="@style/button_text"/>
+	</LinearLayout>
 
 </LinearLayout>

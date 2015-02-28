@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.yobaprojects.weatherwear.R;
@@ -38,13 +39,14 @@ class WearListAdapter extends ArrayAdapter<WearItem> {
 		Button wearIcon = (Button) rowView.findViewById (R.id.wear_icon);
 		TextView layerTextView = (TextView) rowView.findViewById (R.id.layer);
 		TextView levelTextView = (TextView) rowView.findViewById (R.id.level);
+		TextView NFCIDTextView = (TextView) rowView.findViewById (R.id.NFCID);
 
 		wearName.setText (item.getName ());
 		wearIcon.setText (Character.toString (item.getIcon ()));
 		wearIcon.setTypeface (iconsFont);
 		wearIcon.setTextColor (item.getColor ());
 		wearIcon.setShadowLayer(5, 0, 0, ColorName.shadowComputing (item.getColor ()));
-
+		NFCIDTextView.setText (item.getStringNFCID ());
 
 		Log.i ("WEAR_LIST", "layer_" + item.getLayer ().toString ());
 
@@ -54,6 +56,9 @@ class WearListAdapter extends ArrayAdapter<WearItem> {
 
 		layerTextView.setText (layerTextView.getText ().toString () + ": " + layerName);
 		levelTextView.setText (levelTextView.getText ().toString () + ": " + levelName);
+
+		RatingBar thermalInsulation = (RatingBar) rowView.findViewById (R.id.thermalInsulation);
+		thermalInsulation.setRating (item.getThermalInsulation ());
 
 		return rowView;
 	}

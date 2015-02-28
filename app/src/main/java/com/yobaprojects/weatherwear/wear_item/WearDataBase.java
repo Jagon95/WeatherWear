@@ -12,43 +12,45 @@ import java.util.ArrayList;
 public class WearDataBase {
 
 	private static SQLiteOpenHelper openHelper;
-	private static ArrayList <WearItem> wearItems;
-//	private static boolean dataBaseIsCurrent = false;
+	private static ArrayList <WearItem> wearItems = new ArrayList<> ();
 
 	public WearDataBase (Context context) {
 		openHelper = new DBHelper (context);
-		wearItems = new ArrayList<> ();
 
-		SQLiteDatabase database = openHelper.getReadableDatabase ();
+		try (SQLiteDatabase database = openHelper.getReadableDatabase ()) {
 
-		Cursor cursor = database.query (DBHelper.TABLE_NAME, new String[] {DBHelper.UID, DBHelper.NAME, DBHelper.ICON, DBHelper.LAYER, DBHelper.LEVEL, DBHelper.GENUS, DBHelper.ICON_COLOR}, null, null, null, null, null);
+			Cursor cursor = database.query (DBHelper.TABLE_NAME, DBHelper.ALL_FIELDS_NAME, null, null, null, null, null);
 
-		if (cursor.moveToFirst ()) {
+			if (cursor.moveToFirst ()) {
 
-			int idIndex = cursor.getColumnIndex (DBHelper.UID);
-			int nameIndex = cursor.getColumnIndex (DBHelper.NAME);
-			int genusIndex = cursor.getColumnIndex (DBHelper.GENUS);
-			int levelIndex = cursor.getColumnIndex (DBHelper.LEVEL);
-			int layerIndex = cursor.getColumnIndex (DBHelper.LAYER);
-			int iconIndex = cursor.getColumnIndex (DBHelper.ICON);
-			int iconColorIndex = cursor.getColumnIndex (DBHelper.ICON_COLOR);
+				int idIndex = cursor.getColumnIndex (DBHelper.UID);
+				int nameIndex = cursor.getColumnIndex (DBHelper.NAME);
+				int genusIndex = cursor.getColumnIndex (DBHelper.GENUS);
+				int levelIndex = cursor.getColumnIndex (DBHelper.LEVEL);
+				int layerIndex = cursor.getColumnIndex (DBHelper.LAYER);
+				int iconIndex = cursor.getColumnIndex (DBHelper.ICON);
+				int iconColorIndex = cursor.getColumnIndex (DBHelper.ICON_COLOR);
+				int nfcidIndex = cursor.getColumnIndex (DBHelper.NFCID);
+				int thermalIndex = cursor.getColumnIndex (DBHelper.THERMAL);
 
-			WearItem wearItem;
+				WearItem wearItem;
 
-			do {
-				wearItem = new WearItem ();
-				wearItem.setName (cursor.getString (nameIndex));
-				wearItem.setIconColor (cursor.getInt (iconColorIndex));
-				wearItem.setIcon (cursor.getString (iconIndex));
-				wearItem.setLayer (cursor.getString (layerIndex));
-				wearItem.setLevel (cursor.getString (levelIndex));
-				wearItem.setGenus (cursor.getInt (genusIndex));
+				do {
+					wearItem = new WearItem ();
+					wearItem.setName (cursor.getString (nameIndex));
+					wearItem.setIconColor (cursor.getInt (iconColorIndex));
+					wearItem.setIcon (cursor.getString (iconIndex));
+					wearItem.setLayer (cursor.getString (layerIndex));
+					wearItem.setLevel (cursor.getString (levelIndex));
+					wearItem.setGenus (cursor.getInt (genusIndex));
+					wearItem.setNFCID (cursor.getBlob (nfcidIndex));
+					wearItem.setThermalInsulation (cursor.getFloat (thermalIndex));
 
-				wearItems.add (wearItem);
-			} while (cursor.moveToNext ());
+					wearItems.add (wearItem);
+				} while (cursor.moveToNext ());
+			}
 		}
-
-		database.close ();
+//		database.close ();
 	}
 
 	public ArrayList <WearItem>  getAll () {
@@ -66,6 +68,8 @@ public class WearDataBase {
 		cv.put (DBHelper.ICON_COLOR, wearItem.getColor ());
 		cv.put (DBHelper.LAYER, wearItem.getLayer ().toString ());
 		cv.put (DBHelper.LEVEL, wearItem.getLevel ().toString ());
+		cv.put (DBHelper.NFCID, wearItem.getNFCID ());
+		cv.put (DBHelper.THERMAL, wearItem.getThermalInsulation ());
 
 		database.insert (DBHelper.TABLE_NAME, null, cv);
 		database.close ();
@@ -74,7 +78,7 @@ public class WearDataBase {
 	}
 
 	static class DBHelper extends SQLiteOpenHelper {
-		private static final String DATABASE_NAME;
+		private static final String DATABASE_NAME = WearDataBase.class.getSimpleName ();
 		private static final int dataBaseVersion = 1;
 		public static final String TABLE_NAME = "wear_items";
 		public static final String UID = "_id";
@@ -84,16 +88,18 @@ public class WearDataBase {
 		public static final String LAYER = "layer";
 		public static final String ICON = "icon";
 		public static final String ICON_COLOR = "color";
+		public static final String NFCID = "nfcid";
+		public static final String THERMAL = "thermal";
+
+		public static final String [] ALL_FIELDS_NAME =  {DBHelper.UID, DBHelper.NAME, DBHelper.ICON,
+				DBHelper.LAYER, DBHelper.LEVEL, DBHelper.GENUS, DBHelper.ICON_COLOR, DBHelper.THERMAL, DBHelper.NFCID};
 
 		//TODO: Писать icon в VARCHAR или типа того
 		private static final String SQL_CREATE_ENTRIES = "CREATE TABLE " + TABLE_NAME + " (" +
 				UID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NAME + " TEXT, " + GENUS + " INTEGER, " +
-				LEVEL + " TEXT, " + LAYER + " TEXT, " + ICON + " TEXT, " + ICON_COLOR + " INTEGER" +
-				");";
+				LEVEL + " TEXT, " + LAYER + " TEXT, " + ICON + " TEXT, " + ICON_COLOR + " INTEGER, " +
+				THERMAL + " FLOAT, " + NFCID + " BLOB);";
 
-		static {
-			DATABASE_NAME = WearDataBase.class.toString ();
-		}
 
 		DBHelper (Context context) {
 			super(context, DATABASE_NAME, null, dataBaseVersion);

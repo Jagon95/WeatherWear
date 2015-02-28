@@ -12,4 +12,5 @@
     <color name="search_button_pressed">#1565c0</color>
 
     <color name="input_text">#555</color>
+	<color name="text">#333</color>
 </resources>

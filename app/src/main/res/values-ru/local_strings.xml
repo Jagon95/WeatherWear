@@ -19,6 +19,9 @@
 	<string name="title_activity_icon_table">Выберите иконку</string>
 	<string name="title_activity_city_list">Список городов</string>
 	<string name="title_activity_wear_list">Список вещей</string>
+	<string name="title_activity_status">Статус</string>
+	<string name="exit">Выйти</string>
+	<string name="text_view_nfcid">Сканируйте NFC-метку</string>
 
 	<!-- Эту штуку, вероятно, удобнее хранить в массиве -->
 	<string name="layer_underwear">нижний</string>

@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
@@ -23,6 +21,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.yobaprojects.weatherwear.R;
+import com.yobaprojects.weatherwear.wear_item.WearItem;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -130,27 +129,6 @@ public class ChooseIconActivity extends Activity {
         drawIcons();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_icons_table, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     public void onClickSearch(View view) {
         showSearchArea();
@@ -217,29 +195,16 @@ public class ChooseIconActivity extends Activity {
     }
 
     public void onClickSetIcon (View view) {
-
-/*
-        int color = picker.getColor();
-        picker.setOldCenterColor(color);
-        textViewColorName.setText (colorName.GetName(color, 0));
-        Intent thisIntent = getIntent();
-        Bundle bundle = thisIntent.getExtras();
-        bundle.putInt("wearColor", picker.getColor());
-        Intent nextIntent = new Intent(getApplicationContext(), WearEditActivity.class);
-        nextIntent.putExtras(bundle);
-        startActivity(nextIntent);*/
-
         WearTemplate item = wearTemplates [view.getId()];
-//        Toast.makeText(getApplicationContext(), item.getName(), Toast.LENGTH_SHORT).show();
-//        intent.putExtra("wearItem", item);
+
         Intent thisIntent = getIntent();
         Intent nextIntent = new Intent(this, ChooseColorActivity.class);
         Bundle bundle = thisIntent.getExtras();
         if (bundle != null) {
-            bundle.putSerializable("wearItem", item);
+            bundle.putSerializable(WearItem.NAME, item);
             nextIntent.putExtras (bundle);
         } else {
-            nextIntent.putExtra("wearItem", item);
+            nextIntent.putExtra(WearItem.NAME, item);
         }
         startActivity(nextIntent);
 //        Toast.makeText(getApplicationContext(), Integer.toString(view.getId()), Toast.LENGTH_SHORT).show();

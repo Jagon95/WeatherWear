@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yobaprojects.weatherwear" >
 
+    <uses-permission android:name="android.permission.NFC" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -9,7 +11,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,47 +21,79 @@
         </activity>
         <activity
             android:name=".wear_adder.ChooseIconActivity"
-            android:label="@string/title_activity_icon_table" >
+            android:label="@string/title_activity_icon_table"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".wear_adder.WearEditActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".wear_adder.ChooseColorActivity"
-            android:label="@string/title_activity_choose_color" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".wear_adder.WearEditActivity" />
+            android:label="@string/title_activity_choose_color"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".wear_adder.WearEditActivity"
             android:label="@string/title_activity_wear_edit"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".wear_list.WearListActivity"
+            android:label="@string/title_activity_wear_list"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".city_settings.CityListActivity"
+            android:label="@string/title_activity_city_list"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.yobaprojects.weatherwear.MainActivity" />
         </activity>
         <activity
-            android:name=".wear_list.WearListActivity"
-            android:label="@string/title_activity_wear_list" >
+            android:name=".city_settings.ShowWeatherActivity"
+            android:label="@string/title_activity_city_search_complete"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".city_settings.CityListActivity" />
+        </activity>
+        <activity
+            android:name=".StatusActivity"
+            android:label="@string/title_activity_status"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.yobaprojects.weatherwear.MainActivity" />
         </activity>
 
-	    <activity
-		    android:name=".city_settings.CityListActivity"
-		    android:label="@string/title_activity_city_list"
-		    android:parentActivityName=".MainActivity" >
-		    <meta-data
-			    android:name="android.support.PARENT_ACTIVITY"
-			    android:value="com.yobaprojects.weatherwear.MainActivity" />
-	    </activity>
-	    <activity
-		    android:name=".city_settings.ShowWeatherActivity"
-		    android:label="@string/title_activity_city_search_complete"
-		    android:parentActivityName=".MainActivity" >
-		    <meta-data
-			    android:name="android.support.PARENT_ACTIVITY"
-			    android:value=".city_settings.CityListActivity" />
-	    </activity>
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+
+        <activity
+            android:name=".city_settings.SimpleD"
+            android:label="@string/title_activity_simple_d" >
+        </activity>
+        <activity
+            android:name=".city_settings.SimpleChoose"
+            android:label="@string/title_activity_simple_choose" >
+        </activity>
     </application>
 
 </manifest>

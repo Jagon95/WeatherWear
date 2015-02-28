@@ -31,7 +31,6 @@
         android:onClick="searchButtonClick"
         android:src="@drawable/abc_ic_search_api_mtrl_alpha"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="false"
         android:layout_centerHorizontal="true"/>
 
     <ProgressBar
@@ -40,8 +39,5 @@
         android:layout_height="wrap_content"
         android:id="@+id/progressBar"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone" />
-
-
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

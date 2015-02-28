@@ -15,10 +15,52 @@
         <item name="android:onClick">onClickSetIcon</item>
     </style>
 
-	<style name="screenWidthButton">
+	<style name="icon_button.small">
+		<item name="android:textSize">30sp</item>
+		<item name="android:layout_height">40dp</item>
+		<item name="android:layout_width">40dp</item>
+	</style>
+
+	<style name="button">
 		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_marginTop">5dp</item>
+		<item name="android:layout_marginBottom">5dp</item>
+		<item name="android:layout_marginLeft">15dp</item>
+		<item name="android:layout_marginRight">15dp</item>
+		<item name="android:layout_height">50dp</item>
+		<item name="android:focusable">true</item>
+		<item name="android:clickable">true</item>
+		<item name="android:orientation">horizontal</item>
+		<item name="android:gravity">center</item>
+		<item name="android:background">@drawable/button_background</item>
+		<item name="android:paddingLeft">30dp</item>
+		<item name="android:paddingRight">30dp</item>
+
+	</style>
+
+	<style name="WeatherItem">
+		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_margin">5dp</item>
+		<item name="android:padding">10dp</item>
+		<item name="android:background">@color/background_floating_material_light</item>
+		<item name="android:layout_marginRight">1px</item>
+		<item name="android:orientation">vertical</item>
+		<item name="android:gravity">center_horizontal</item>
+	</style>
+
+	<style name="button_text">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+		<item name="android:textColor">@color/text</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:gravity">center_horizontal</item>
+	</style>
+
+	<style name="button_icon">
+		<item name="android:layout_width">40dp</item>
+		<item name="android:layout_height">40dp</item>
+		<item name="android:layout_weight">0</item>
 	</style>
 
 </resources>

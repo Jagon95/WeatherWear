@@ -5,6 +5,7 @@ import com.yobaprojects.weatherwear.wear_adder.WearTemplate;
 import java.io.Serializable;
 
 public class WearItem implements Serializable{
+	public final static String NAME = WearItem.class.getSimpleName ();
     public final static int EMPTY_GENUS = -1;
     private String name;
 	private int genus = EMPTY_GENUS;		//род, в лингвистическом смысле
@@ -12,6 +13,8 @@ public class WearItem implements Serializable{
 	private Level level;
 	private char icon;
 	private int iconColor;
+	private byte [] NFCID;
+	private float thermalInsulation;
 
     public WearItem () {}
 
@@ -48,6 +51,12 @@ public class WearItem implements Serializable{
 	public void setIcon (String icon) {
 		setIcon (icon.charAt (0));
 	}
+	public void setNFCID (byte [] NFCID) {
+		this.NFCID = NFCID;
+	}
+	public void setThermalInsulation (float thermalInsulation) {
+		this.thermalInsulation = thermalInsulation;
+	}
 
 	public char getIcon() {
 		return icon;
@@ -67,5 +76,21 @@ public class WearItem implements Serializable{
 	public Level getLevel() {
 		return level;
 	}
+	public byte [] getNFCID () {
+		return NFCID;
+	}
+	public String getStringNFCID () {
+		if (NFCID != null) {
+			StringBuilder sb = new StringBuilder ();
 
+			for (int i : NFCID)
+				sb.append (String.format ("%02x ", i & 0xff));
+
+			return sb.toString ();
+		}
+		else return "";
+	}
+	public float getThermalInsulation () {
+		return thermalInsulation;
+	}
 }

@@ -1,12 +1,12 @@
 package com.yobaprojects.weatherwear.city_settings;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,107 +25,90 @@ import java.util.Arrays;
 
 
 public class CityListActivity extends ActionBarActivity {
-    private ArrayList<String> cityNames;
-    private ArrayAdapter<String> adapter;
+	private ArrayList<String> cityNames;
+	private ArrayAdapter<String> adapter;
+	private ProgressBar progressBar;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	public static final String APP_PREFERENCES = "city_save"; //для сохранения данных
+	SharedPreferences city_save; //фигачим переманную. Я комментирую, просто во всем этом дерьме потерялся, чтобы заново не перепиливать пишу такие простыни
 
-        setContentView(R.layout.activity_city_list);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.GONE);
+		city_save = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE); //инициализируемебучую переменную
 
-        EditText searchText = (EditText) findViewById(R.id.cityEditText);
-        searchText.addTextChangedListener(new TextWatcher() {
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                JsonW lookingForCity = new JsonW(getAssets(), "json/cities.json");
-               // cityNames = new ArrayList<String>(Arrays.asList(lookingForCity.LookingForCity(s.toString())));
-                cityNames.clear();
-                cityNames.addAll(Arrays.asList(lookingForCity.LookingForCity(s.toString())));
-                // cityNames.add(lookingForCity.LookingForCity(searchText.getText().toString()));
-                adapter.notifyDataSetChanged();
-            }
-            public void afterTextChanged(Editable s) {
-            }
+		setContentView(R.layout.activity_city_list);
 
-            public void beforeTextChanged(CharSequence s, int start, int count, int after){
-            }
+		progressBar = (ProgressBar) findViewById(R.id.progressBar);
+		progressBar.setVisibility(View.GONE);
 
-        } );
+		EditText searchText = (EditText) findViewById(R.id.cityEditText);
+		searchText.addTextChangedListener(new TextWatcher() {
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+				//подключаем джейсончик
+				JsonW lookingForCity = new JsonW(getAssets(), "json/cities.json");
+				//добавляем в cityNames массив
+				cityNames.clear ();
+				cityNames.addAll(Arrays.asList(lookingForCity.LookingForCity(s.toString())));
+				//уведомляем адаптер об изменении
+				adapter.notifyDataSetChanged();
+			}
+			public void afterTextChanged(Editable s) {
+			}
 
+			public void beforeTextChanged(CharSequence s, int start, int count, int after){
+			}
 
-
-
-        //=================Первоначаальное формирование списка городов==============================
-
-        //экземпляр элемента ListView
-        ListView lv = (ListView) findViewById(R.id.cityListView);
-         JsonW jSONReader = new JsonW(getAssets(), "json/cities.json");
-        //final String[] citiesInList = jSONReader.GetAll();
-        cityNames = new ArrayList<>(Arrays.asList(jSONReader.GetAll()));
-        // используем адаптер данных
-        adapter = new ArrayAdapter<> (this, android.R.layout.simple_list_item_1, cityNames);
-        lv.setAdapter(adapter);
-
-        //==========================================================================================
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View itemClicked, int position,long id) {
+		} );
 
 
-                progressBar.setVisibility(View.VISIBLE);
-
-	            Toast.makeText(getApplicationContext(), ("Выбран город " + ((TextView) itemClicked).getText()),
-                        Toast.LENGTH_SHORT).show();
-
-	            Intent intent = new Intent(getApplicationContext (), ShowWeatherActivity.class);
-	            intent.putExtra("cityName", ((TextView) itemClicked).getText());
-	            progressBar.setVisibility(View.GONE);
-	            startActivity(intent);
-
-                        // в ключ username пихаем текст из первого текстового поля
-
-                        //startActivity(new Intent(this, city_full_info.class));
-            }
-        });
 
 
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_city_list, menu);
-        return true;
-    }
+		//=================Первоначаальное формирование списка городов==============================
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+		//экземпляр элемента ListView
+		ListView lv = (ListView) findViewById(R.id.cityListView);
+		JsonW jSONReader = new JsonW(getAssets(), "json/cities.json");
+		//final String[] citiesInList = jSONReader.GetAll();
+		cityNames = new ArrayList<>(Arrays.asList(jSONReader.GetAll()));
+		// используем адаптер данных
+		adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, cityNames);
+		lv.setAdapter(adapter);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+		//==========================================================================================
 
-        return super.onOptionsItemSelected(item);
-    }
+		lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View itemClicked, int position,long id) {
 
-    public void searchButtonClick(View view)
-    {
+
+				progressBar.setVisibility(View.VISIBLE);
+
+				SharedPreferences.Editor editor = city_save.edit();
+				editor.putString (APP_PREFERENCES, ((TextView) itemClicked).getText ().toString ());
+				editor.apply();
+
+				//Ну и дальше, по-сути старый кусок кода с проверкой
+				Toast.makeText(getApplicationContext(), ("Выбран город " + (city_save.getString(APP_PREFERENCES, ""))),
+						Toast.LENGTH_SHORT).show();
+
+				Intent intent = new Intent(CityListActivity.this, SimpleD.class);
+				startActivity(intent);
+			}
+		});
+
+
+	}
+
+
+    public void searchButtonClick(View view) {
         EditText cityEditText = (EditText) findViewById(R.id.cityEditText);
         cityEditText.setVisibility(View.VISIBLE);
         ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton);
         imageButton.setVisibility(View.GONE);
-
-
     }
 
 }

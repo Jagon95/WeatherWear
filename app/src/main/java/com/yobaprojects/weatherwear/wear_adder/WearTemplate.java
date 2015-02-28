@@ -46,7 +46,6 @@ public class WearTemplate implements Serializable {
 
         if (allElem == null) {
             allElem = new WearTemplate [templates.size()];
-            //TODO: нарыть JSON-библиотеку, которая могла бы парсить-читаться потоком. Так круче
             Iterator<JSONObject> it = templates.iterator();
 
             int count = 0;
